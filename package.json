@@ -1,0 +1,22 @@
+{
+  "name": "estacionamiento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paula4/estacionamiento.git"
+  },
+  "author": "Paula Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paula4/estacionamiento/issues"
+  },
+  "scripts": {
+    "start": "live-server"
+  },
+  "homepage": "https://github.com/paula4/estacionamiento#readme",
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  }
+}

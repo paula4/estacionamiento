@@ -1,25 +1,100 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>ESTACIONAMIENTO</title>
-  </head>
-  <body>
- <script>
- var vehiculo;
- var marca;
- var patente;
- vehiculo=prompt('Ingrese el nombre del vehiculo:','');
- marca=prompt('Ingrese la marca del vehiculo:','');
- patente=prompt('ingrese la patente del vehiculo:','');
- document.write('el vehiculo ingresado es:  ',);
- document.write(vehiculo);
-  document.write ('<br>');
- document.write('la marca es:  ');
- document.write(marca);
-  document.write ('<br>');
- document.write('la patente es: ');
-  document.write(patente);
- </script>
-  </body>
+
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" href="css/master.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet">
+  <title>Prueba plantilla</title>
+</head>
+<body>
+  <header>
+    <h1 class="logo">PParking</h1><a href="#" onclick="menu()" class="menu">☰</a>
+  </header>
+  <div class="menu-popup">
+    <div class="close" onclick="menu()"></div>
+    <ul>
+      <a href="#"><li>Tarifas</li></a>
+      <a href="#"><li>Espacios</li></a>
+    </ul>
+  </div>
+  <main>
+    <section id="contadores">
+      <div class="contador bg-green">
+        <img src="img/moto.png" class="icono-vehiculo">
+        <span class="numero">1</span>
+      </div>
+      <div class="contador  bg-orange">
+        <img src="img/auto.png" class="icono-vehiculo">
+        <span class="numero">5</span>
+      </div>
+      <div class="contador bg-red">
+        <img src="img/camioneta.png" class="icono-vehiculo">
+        <span class="numero">10</span>
+      </div>
+    </section>
+
+    <h1 class="titulo">Total acumulado:</br>$999.999</h1>
+    <div class="text-center">
+      <a href="#" class="btn btn-lg btn-gray">Ingreso de</br>vehículo</a>
+      <a href="#" class="btn btn-lg btn-green">Salida de</br>vehículo</a>
+    </div>
+
+
+   <!--<h1 class="titulo">Seleccione vehículo</h1>
+    <form class="text-center" action="index.html" method="post">
+      <div class="my">
+        <div class="w-30">
+          <input type="radio" class="check" name="patente" id="check1">
+          <label for="check1">Moto</label>
+        </div><!--
+        --><!--<div class="w-30">
+          <input type="radio" class="check" name="patente" id="check2">
+          <label for="check2">Auto</label>
+        </div><!--
+        --><!--<div class="w-40">
+          <input type="radio" class="check" name="patente" id="check3">
+          <label for="check3">Camioneta</label>
+        </div>
+      </div>-->
+      <!--<input type="text" class="patente"  placeholder="Patente"></br></br>
+      <input type="submit" name="submit" value="Ingresar" class="btn btn-blue ">
+    </form>
+  -->
+  </main>
+  <footer>
+    <span>Copyright © 2018 PParking</span>
+  </footer>
+
+  <script type="text/javascript">
+  function menu() {
+    var element = document.querySelector(".menu-popup");
+    element.classList.toggle("show");
+  }
+
+  var element = document.querySelector(".patente");
+  element.addEventListener('input', function (e) {
+    if(element.value.length > 2){
+      if(element.value[2].toLowerCase() != element.value[2].toUpperCase()){
+        element.classList.add("vieja");
+        element.classList.remove("nueva");
+        element.maxLength=7;
+      }else{
+        element.classList.remove("vieja");
+        element.classList.add("nueva");
+        element.maxLength=9;
+      }
+    }
+    else{
+      element.classList.remove("vieja");
+      element.classList.remove("nueva");
+    }
+  }, false);
+
+
+  </script>
+</body>
 </html>
