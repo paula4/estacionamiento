@@ -41,15 +41,49 @@
         </div>
       </a>
     </section>
-    <h1 class="titulo">Total acumulado:</br>$<span class="acumulado">0</span></h1>
-    <div class="text-center">
-      <a href="ingresar.html" class="btn btn-lg btn-gray">Ingreso de</br>vehículo</a>
-      <a href="salida.html" class="btn btn-lg btn-green">Salida de</br>vehículo</a>
-    </div>
+   <h1 class="titulo">Ingrese la patente</h1>
+   <form id="formSalida" class="text-center">
+      <input type="text" class="patente" oninput="poninput()" placeholder="Patente"></br></br>
+      <input type="submit" name="submit" value="Retirar" class="btn btn-blue ">
+    </form>
   </main>
   <footer>
     <span>Copyright © 2018 PParking</span>
   </footer>
   <script src="js/main.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  let patenteInput = document.querySelector(".patente");
+  params = new URLSearchParams(window.location.href);
+  console.log(params.has('id'));
+  if(params.has('id')){
+    patenteInput.value = params.get('id');
+    formSubmit(null);
+  }
+  function poninput(){
+    if(patenteInput.value[2] !== undefined){
+      if(patenteInput.value[2].toUpperCase() === patenteInput.value[2].toLowerCase()){
+        patenteInput.classList.add("nueva");
+        patenteInput.classList.remove("vieja");
+      }else{
+        patenteInput.classList.add("vieja");
+        patenteInput.classList.remove("nueva");
+      }
+    }
+    else{
+      patenteInput.classList.remove("nueva");
+      patenteInput.classList.remove("vieja");
+    }
+  }
+  function formSubmit(e){
+    if(e) e.preventDefault();    //stop form from submitting
+    let patente = document.querySelector(".patente").value;
+    if(patente === ""){
+      return false;
+    }
+    exitVehicle(patente);
+    window.history.back();
+  }
+  document.querySelector("#formSalida").addEventListener("submit", (e) => {formSubmit(e)});
+  </script>
 </body>
 </html>

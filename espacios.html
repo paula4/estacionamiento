@@ -41,15 +41,40 @@
         </div>
       </a>
     </section>
-    <h1 class="titulo">Total acumulado:</br>$<span class="acumulado">0</span></h1>
-    <div class="text-center">
-      <a href="ingresar.html" class="btn btn-lg btn-gray">Ingreso de</br>vehículo</a>
-      <a href="salida.html" class="btn btn-lg btn-green">Salida de</br>vehículo</a>
-    </div>
+   <h1 class="titulo">Modificar la cantidad de espacios</h1>
+   <form id="formEspacios" class="text-center">
+     <h2>Autos<h2>
+     <input type="text" id="auto">
+     <h2>Motos<h2>
+     <input type="text" id="moto">
+     <h2>Camionetas<h2>
+     <input type="text" id="camioneta"></br></br>
+      <input type="submit" name="submit" value="Guardar" class="btn btn-blue ">
+    </form>
   </main>
   <footer>
     <span>Copyright © 2018 PParking</span>
   </footer>
   <script src="js/main.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  let inputAuto = document.querySelector("#auto");
+  let inputMoto = document.querySelector("#moto");
+  let inputCamioneta = document.querySelector("#camioneta");
+  inputAuto.value = espacios.auto;
+  inputMoto.value = espacios.moto;
+  inputCamioneta.value = espacios.camioneta;
+
+  document.querySelector("#formEspacios").addEventListener("submit", function(e){
+    e.preventDefault();    //stop form from submitting
+    inputAuto = document.querySelector("#auto");
+    inputMoto = document.querySelector("#moto");
+    inputCamioneta = document.querySelector("#camioneta");
+    espacios.auto = inputAuto.value;
+    espacios.moto = inputMoto.value;
+    espacios.camioneta = inputCamioneta.value;
+    saveEspacios();
+    window.location.replace("index.html");
+  });
+  </script>
 </body>
 </html>

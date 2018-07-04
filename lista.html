@@ -41,15 +41,45 @@
         </div>
       </a>
     </section>
-    <h1 class="titulo">Total acumulado:</br>$<span class="acumulado">0</span></h1>
-    <div class="text-center">
-      <a href="ingresar.html" class="btn btn-lg btn-gray">Ingreso de</br>vehículo</a>
-      <a href="salida.html" class="btn btn-lg btn-green">Salida de</br>vehículo</a>
-    </div>
+   <h1 class="titulo">Lista de vehiculos estacionados</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Patente</th>
+          <th>Ingresó</th>
+          <th></th>
+
+        </tr>
+      </thead>
+      <tbody id="vehiclesData">
+      </tbody>
+    </table>
   </main>
   <footer>
     <span>Copyright © 2018 PParking</span>
   </footer>
   <script src="js/main.js" charset="utf-8"></script>
+  <script type="text/javascript">
+
+  miLista.forEach((vehiculo)=>{
+    var tr = document.createElement("tr");
+    var tipo = document.createElement("td");
+    var patente = document.createElement("td");
+    var ingreso = document.createElement("td");
+    var cross = document.createElement("a");
+    tipo.innerHTML = vehiculo.tipo;
+    patente.innerHTML = vehiculo.patente;
+    ingreso.innerHTML = new Date(vehiculo.ingreso).toLocaleString();
+    cross.innerHTML = "X";
+    cross.href = "/salida.html?&id="+vehiculo.patente;
+    cross.classList.add("deleteX");
+    tr.appendChild(tipo);
+    tr.appendChild(patente);
+    tr.appendChild(ingreso);
+    tr.appendChild(cross);
+    document.querySelector("#vehiclesData").appendChild(tr);
+  });
+  </script>
 </body>
 </html>

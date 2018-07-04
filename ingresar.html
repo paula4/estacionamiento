@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="css/master.css">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet">
+  <title>PParking</title>
+</head>
+<body>
+  <header>
+    <h1 class="logo"><a href="index.html">PParking</a></h1><a onclick="toggleMenu()" class="menu">☰</a>
+  </header>
+  <div class="menu-popup ">
+    <div class="close" onclick="toggleMenu()"></div>
+    <ul>
+      <a href="tarifas.html"><li>Tarifas</li></a>
+      <a href="espacios.html"><li>Espacios</li></a>
+      <a onclick="reset()"><li>Reset</li></a>
+    </ul>
+  </div>
+  <main>
+    <section id="contadores">
+      <a href="lista.html" class="bg-white d-block">
+        <div class="contador moto">
+          <img src="img/moto.png" class="icono-vehiculo">
+          <span class="numero moto">0</span>
+        </div>
+        <div class="contador auto">
+          <img src="img/auto.png" class="icono-vehiculo">
+          <span class="numero auto">0</span>
+        </div>
+        <div class="contador camioneta">
+          <img src="img/camioneta.png" class="icono-vehiculo">
+          <span class="numero camioneta">0</span>
+        </div>
+      </a>
+    </section>
+   <h1 class="titulo">Seleccione vehículo</h1>
+   <form id="formIngresar" class="text-center">
+      <div class="my">
+        <div class="w-30">
+          <input type="radio" class="check" name="tipo" id="moto">
+          <label for="moto">Moto</label>
+        </div><!--
+     --><div class="w-30">
+          <input type="radio" class="check" name="tipo" id="auto">
+          <label for="auto">Auto</label>
+        </div><!--
+     --><div class="w-40">
+          <input type="radio" class="check" name="tipo" id="camioneta">
+          <label for="camioneta">Camioneta</label>
+        </div>
+      </div>
+      <input type="text" class="patente" oninput="poninput()" placeholder="Patente"></br></br>
+      <input type="submit" name="submit" value="Ingresar" class="btn btn-blue ">
+    </form>
+  </main>
+  <footer>
+    <span>Copyright © 2018 PParking</span>
+  </footer>
+  <script src="js/main.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  let patenteInput = document.querySelector(".patente")
+  function poninput(){
+    if(patenteInput.value[2] !== undefined){
+      if(patenteInput.value[2].toUpperCase() === patenteInput.value[2].toLowerCase()){
+        patenteInput.classList.add("nueva");
+        patenteInput.classList.remove("vieja");
+      }else{
+        patenteInput.classList.add("vieja");
+        patenteInput.classList.remove("nueva");
+      }
+    }
+    else{
+      patenteInput.classList.remove("nueva");
+      patenteInput.classList.remove("vieja");
+    }
+  }
+  document.querySelector("#formIngresar").addEventListener("submit", function(e){
+    e.preventDefault();    //stop form from submitting
+    let patente = document.querySelector(".patente").value;
+    if(patente === ""){
+      return false;
+    }
+    let tipo;
+    if(document.querySelector("#moto").checked){
+      tipo = "moto";
+    }else if(document.querySelector("#auto").checked){
+      tipo = "auto";
+    }else if(document.querySelector("#camioneta").checked){
+      tipo = "camioneta";
+    }else{
+      return false;
+    }
+    addVehicle(patente,tipo);
+    window.location.replace("index.html");
+  });
+  </script>
+</body>
+</html>
