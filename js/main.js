@@ -128,7 +128,7 @@ const reset = () =>{
   saveAmount();
   savePrices();
   saveEspacios();
-  window.location.replace("/");
+  window.location.replace("index.html");
 }
 
 
