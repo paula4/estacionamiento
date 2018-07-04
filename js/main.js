@@ -8,13 +8,17 @@ var espacios ={auto:10,moto:15,camioneta:6};
 const loadStorage = () => {
   let miStorage = window.localStorage; //el storage en si
   let listaString = miStorage.getItem('vehiculos'); //los datos que traigo
-  miLista = JSON.parse(listaString);//guardo los datos ya transformados a arreglo/objeto en la lista.
+  if(listaString)
+    miLista = JSON.parse(listaString);//guardo los datos ya transformados a arreglo/objeto en la lista.
   let precioString = miStorage.getItem('precios');
-  precio = JSON.parse(precioString);
+  if(precioString)
+    precio = JSON.parse(precioString);
   let espaciosString = miStorage.getItem('espacios');
-  espacios = JSON.parse(espaciosString);
-  montoAcumulado = parseFloat(miStorage.getItem('acumulado'));
-  console.log(miLista,montoAcumulado,precio);
+  if(espaciosString)
+    espacios = JSON.parse(espaciosString);
+  let montoAcumuladoString = miStorage.getItem('acumulado');
+  if(montoAcumuladoString)
+    montoAcumulado = parseFloat(montoAcumuladoString);
 }
 
 const saveList = () => {
@@ -75,7 +79,6 @@ const exitVehicle = (dominio) => {
     if (miLista.hasOwnProperty(vehiculo) && miLista[vehiculo].patente == dominio) {
       let toDelete = miLista[vehiculo];
       let timeDiff =  (new Date().getTime() - new Date(toDelete.ingreso).getTime()) / 1000 / 60 / 60; //in hours
-      console.log(timeDiff);
       montoAcumulado =  isNaN(montoAcumulado) ? 0 : montoAcumulado + precio[miLista[vehiculo].tipo] * timeDiff;
       delete miLista[vehiculo];
       miLista = miLista.filter((e)=>{ return e !== false});
