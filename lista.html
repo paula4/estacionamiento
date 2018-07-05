@@ -72,7 +72,7 @@
     patente.innerHTML = vehiculo.patente;
     ingreso.innerHTML = new Date(vehiculo.ingreso).toLocaleString();
     cross.innerHTML = "X";
-    cross.href = "/salida.html?&id="+vehiculo.patente;
+    cross.href = "salida.html?&id="+vehiculo.patente;
     cross.classList.add("deleteX");
     tr.appendChild(tipo);
     tr.appendChild(patente);

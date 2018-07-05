@@ -80,6 +80,7 @@ const exitVehicle = (dominio) => {
       let toDelete = miLista[vehiculo];
       let timeDiff =  (new Date().getTime() - new Date(toDelete.ingreso).getTime()) / 1000 / 60 / 60; //in hours
       montoAcumulado =  isNaN(montoAcumulado) ? 0 : montoAcumulado + precio[miLista[vehiculo].tipo] * timeDiff;
+      alert("Vehiculo retirado!. Monto a cobrar: "+(precio[miLista[vehiculo].tipo] * timeDiff).toFixed(2));
       delete miLista[vehiculo];
       miLista = miLista.filter((e)=>{ return e !== false});
       saveList();
